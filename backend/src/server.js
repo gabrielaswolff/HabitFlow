@@ -28,6 +28,36 @@ app.post('/register', (req, res) => {
     });
 });
 
+// Editar Usuário
+app.put('/usuarios/editar/:id', (req, res) => {
+    const { id } = req.params;
+    const { nome, email, senha } = req.body;
+
+    const query = 'UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE id = ?';
+    db.query(query, [nome, email, senha, id], (err, result) => {
+        if (err) {
+            console.error('Erro ao editar usuário:', err);
+            return res.status(500).json({ success: false, message: 'Erro ao editar usuário.' });
+        }
+        res.json({ success: true, message: 'Usuário editado com sucesso!' });
+    });
+});
+
+// Deletar Usuário
+app.delete('/usuarios/deletar/:id', (req, res) => {
+    const { id } = req.params;
+
+    const query = 'DELETE FROM usuarios WHERE id = ?';
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.error('Erro ao deletar usuário:', err);
+            return res.status(500).json({ success: false, message: 'Erro ao deletar usuário.' });
+        }
+        res.json({ success: true, message: 'Usuário deletado com sucesso!' });
+    });
+});
+
+
 // Login de usuário
 app.post('/login', (req, res) => {
     const { email, senha } = req.body;
@@ -47,8 +77,7 @@ app.post('/login', (req, res) => {
     });
 });
 
-
-
+// Rota para criar hábito
 app.post('/habitos/criar', (req, res) => {
     const { usuario_id, titulo, descricao } = req.body;
 
@@ -61,6 +90,7 @@ app.post('/habitos/criar', (req, res) => {
         res.status(201).json({ success: true, message: 'Hábito criado com sucesso!' });
     });
 });
+
 
 
 app.get('/habitos/:usuario_id', (req, res) => {

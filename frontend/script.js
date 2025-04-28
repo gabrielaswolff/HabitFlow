@@ -1,5 +1,18 @@
 const apiUrl = 'http://localhost:3000';
 
+// Função para exibir notificações
+function mostrarNotificacao(mensagem) {
+    const notificacao = document.createElement('div');
+    notificacao.classList.add('notificacao');
+    notificacao.innerText = mensagem;
+
+    document.getElementById('notificacaoContainer').appendChild(notificacao);
+
+    setTimeout(() => {
+        notificacao.remove();
+    }, 4000);
+}
+
 // Cadastro
 document.getElementById('registerForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -15,7 +28,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
             body: JSON.stringify({ nome, email, senha })
         });
         const data = await response.json();
-        alert(data.message);
+        mostrarNotificacao(data.message);
     } catch (error) {
         console.error('Erro ao cadastrar:', error);
     }
@@ -36,17 +49,17 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         });
         const data = await response.json();
         if (data.success) {
-            alert('Bem-vindo(a), ' + data.user.nome);
+            mostrarNotificacao('Bem-vindo(a), ' + data.user.nome);
             localStorage.setItem('userId', data.user.id);
         } else {
-            alert(data.message);
+            mostrarNotificacao(data.message);
         }
     } catch (error) {
         console.error('Erro no login:', error);
     }
 });
 
-
+// Adicionar Hábito
 document.getElementById('habitForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -61,47 +74,44 @@ document.getElementById('habitForm').addEventListener('submit', async (e) => {
             body: JSON.stringify({ usuario_id, titulo, descricao })
         });
         const data = await response.json();
-        alert(data.message);
+        mostrarNotificacao(data.message);
         carregarHabitos();
     } catch (error) {
         console.error('Erro ao criar hábito:', error);
     }
 });
 
-
-// testes
-
+// Carregar Hábitos
 async function carregarHabitos() {
     const usuario_id = localStorage.getItem('userId');
     const painel = document.getElementById('painelHabitos');
-    painel.innerHTML = ''; // Limpa o painel
+    painel.innerHTML = '';
 
     try {
         const response = await fetch(`${apiUrl}/habitos/${usuario_id}`);
         const data = await response.json();
 
         if (data.success) {
-           
-data.habitos.forEach(habito => {
-    const div = document.createElement('div');
-    div.innerHTML = `
-        <h3>${habito.titulo}</h3>
-        <p>${habito.descricao || 'Sem descrição.'}</p>
-        <p>Status: ${habito.status === 'completo' ? '✅ Completo' : '🔴 Pendente'}</p>
-        ${habito.status !== 'completo' ? `<button onclick="marcarCompleto(${habito.id})">Marcar como completo</button>` : ''}
-        <button onclick="editarHabito(${habito.id}, '${habito.titulo}', '${habito.descricao || ''}')">Editar</button>
-        <button onclick="deletarHabito(${habito.id})">Excluir</button>
-        <hr>
-    `;
-    painel.appendChild(div);
-});
-
+            data.habitos.forEach(habito => {
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <h3>${habito.titulo}</h3>
+                    <p>${habito.descricao || 'Sem descrição.'}</p>
+                    <p>Status: ${habito.status === 'completo' ? '✅ Completo' : '🔴 Pendente'}</p>
+                    ${habito.status !== 'completo' ? `<button onclick="marcarCompleto(${habito.id})">Marcar como completo</button>` : ''}
+                    <button onclick="editarHabito(${habito.id}, '${habito.titulo}', '${habito.descricao || ''}')">Editar</button>
+                    <button onclick="deletarHabito(${habito.id})">Excluir</button>
+                    <hr>
+                `;
+                painel.appendChild(div);
+            });
         }
     } catch (error) {
         console.error('Erro ao carregar hábitos:', error);
     }
 }
 
+// Marcar Hábito como Completo
 async function marcarCompleto(habito_id) {
     const usuario_id = localStorage.getItem('userId');
 
@@ -112,17 +122,51 @@ async function marcarCompleto(habito_id) {
             body: JSON.stringify({ usuario_id, habito_id })
         });
         const data = await response.json();
-        alert(data.message);
-        carregarHabitos(); // Atualiza o painel
+        mostrarNotificacao(data.message);
+        carregarHabitos();
     } catch (error) {
         console.error('Erro ao marcar hábito:', error);
     }
 }
 
+// Editar Hábito
+async function editarHabito(id, titulo, descricao) {
+    const novoTitulo = prompt('Novo título:', titulo);
+    const novaDescricao = prompt('Nova descrição:', descricao);
 
-carregarHabitos();
+    if (novoTitulo && novaDescricao) {
+        try {
+            const response = await fetch(`${apiUrl}/habitos/editar/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ titulo: novoTitulo, descricao: novaDescricao })
+            });
+            const data = await response.json();
+            mostrarNotificacao(data.message);
+            carregarHabitos();
+        } catch (error) {
+            console.error('Erro ao editar hábito:', error);
+        }
+    }
+}
 
+// Deletar Hábito
+async function deletarHabito(id) {
+    if (confirm('Tem certeza de que deseja excluir este hábito?')) {
+        try {
+            const response = await fetch(`${apiUrl}/habitos/deletar/${id}`, {
+                method: 'DELETE',
+            });
+            const data = await response.json();
+            mostrarNotificacao(data.message);
+            carregarHabitos();
+        } catch (error) {
+            console.error('Erro ao excluir hábito:', error);
+        }
+    }
+}
 
+// Carregar Ranking
 async function carregarRanking() {
     try {
         const resposta = await fetch('http://localhost:3000/ranking');
@@ -135,8 +179,7 @@ async function carregarRanking() {
             dados.ranking.forEach((usuario, index) => {
                 const item = document.createElement('div');
                 item.innerHTML = `<strong>${index + 1}º</strong> - ${usuario.nome} (${usuario.pontuacao} pontos)`;
-                
-                // destaque para o 1º lugar
+
                 if (index === 0) {
                     item.style.color = 'gold';
                     item.style.fontWeight = 'bold';
@@ -146,7 +189,7 @@ async function carregarRanking() {
                 } else if (index === 2) {
                     item.innerHTML = `🥉 ${usuario.nome} (${usuario.pontuacao} pontos)`;
                 }
-                
+
                 rankingDiv.appendChild(item);
             });
         }
@@ -155,62 +198,43 @@ async function carregarRanking() {
     }
 }
 
-carregarRanking()
+carregarRanking();
 
+// Array com mensagens motivacionais
+const mensagens = [
+    "Você consegue! Não desista agora.",
+    "O sucesso é a soma de pequenos esforços repetidos.",
+    "Cada dia é uma nova chance para mudar sua vida.",
+    "Acredite em si mesmo e tudo será possível.",
+    "Você é mais forte do que pensa!",
+    "Mantenha o foco e siga em frente!",
+    "Nada é impossível. Acredite em você!",
+    "O único limite para o seu sucesso é você mesmo!"
+];
 
-async function editarHabito(id, tituloAtual, descricaoAtual) {
-    const novoTitulo = prompt('Novo título:', tituloAtual);
-    const novaDescricao = prompt('Nova descrição:', descricaoAtual);
+// Função para exibir uma mensagem aleatória
+// Função para exibir uma mensagem motivacional com animação
+function exibirMensagemMotivacional() {
+    const mensagem = mensagens[Math.floor(Math.random() * mensagens.length)];
+    const mensagemElement = document.getElementById('textoMensagem');
+    const painelMensagem = document.getElementById('mensagemMotivacional');
+    
+    // Atualize o texto da mensagem
+    mensagemElement.textContent = mensagem;
 
-    if (novoTitulo !== null && novaDescricao !== null) {
-        try {
-            const response = await fetch(`${apiUrl}/habitos/editar/${id}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ titulo: novoTitulo, descricao: novaDescricao })
-            });
-            const data = await response.json();
-            alert(data.message);
-            carregarHabitos();
-        } catch (error) {
-            console.error('Erro ao editar hábito:', error);
-        }
-    }
+    // Exibir a mensagem
+    painelMensagem.style.display = 'block'; // Mostra o painel diretamente
+    
+    // Adicionar a classe 'show' para a animação de opacidade
+    painelMensagem.classList.add('show');
+
+    // Esconde a mensagem após 3 segundos
+    setTimeout(() => {
+        painelMensagem.classList.remove('show');
+        painelMensagem.style.display = 'none'; // Esconde o painel
+    }, 3000); // Tempo de exibição da mensagem (3 segundos)
 }
 
-async function deletarHabito(id) {
-    if (confirm('Tem certeza que deseja excluir este hábito?')) {
-        try {
-            const response = await fetch(`${apiUrl}/habitos/deletar/${id}`, {
-                method: 'DELETE'
-            });
-            const data = await response.json();
-            alert(data.message);
-            carregarHabitos();
-        } catch (error) {
-            console.error('Erro ao deletar hábito:', error);
-        }
-    }
-}
-
-
-function mostrarMensagemMotivacional() {
-    const mensagens = [
-        "Você é capaz de alcançar grandes coisas! 🚀",
-        "Cada pequeno passo te aproxima do seu objetivo! 🏆",
-        "Persistência é a chave do sucesso! 🔑",
-        "Um novo hábito hoje, uma nova vida amanhã! 🌟",
-        "Você está construindo o seu futuro agora! 💪"
-    ];
-
-    const index = Math.floor(Math.random() * mensagens.length);
-    alert(mensagens[index]);
-}
-
-// Quando carregar os hábitos:
-carregarHabitos();
-mostrarMensagemMotivacional();
-
-
-
+// Exibir uma mensagem a cada 10 segundos
+setInterval(exibirMensagemMotivacional, 10000); // 10.000 milissegundos = 10 segundos
 

@@ -1,10 +1,11 @@
-body{
+/* Geral */
+body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
 }
 
-header{
+header {
     background-color: rgb(6, 28, 6);
     display: flex;
     align-items: left;
@@ -12,46 +13,132 @@ header{
 }
 
 main {
-    background-color: rgb(114, 146, 135);
+    background-image: url();
     min-height: 90vh;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-size: cover; /* Faz com que a imagem cubra todo o fundo */
+    background-position: center; /* Centraliza a imagem */
+    background-attachment: fixed; /* Fixa a imagem enquanto rola a página */
 }
 
-.tela {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+form {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    margin: 20px 0;
 }
 
-.tela input {
-    margin: 5px;
-    padding: 10px;
-    width: 250px;
-}
-
-.tela button {
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: rgb(152, 192, 152);
-    border: none;
-    cursor: pointer;
+form input, form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 16px;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Notificações */
+#notificacaoContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.notificacao {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Ranking */
+#ranking {
+    width: 90%;
+    margin-top: 20px;
+}
+
+#ranking div {
+    background-color: #f4f4f4;
+    padding: 12px;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+#ranking div strong {
+    font-size: 20px;
     font-weight: bold;
 }
 
-.tela button:hover {
-    background-color: rgb(131, 165, 131);
+#ranking div:nth-child(odd) {
+    background-color: #e7e7e7;
 }
 
-.escondido {
-    display: none;
+#ranking div:first-child {
+    background-color: gold;
+    color: white;
 }
 
-#listaHabitos, #listaRanking {
-    margin: 20px 0;
-    width: 90%;
+#ranking div:nth-child(2) {
+    background-color: silver;
+    color: white;
 }
-    
+
+#ranking div:nth-child(3) {
+    background-color: #cd7f32;
+    color: white;
+}
+
+
+#mensagemMotivacional {
+    position: fixed;
+    bottom: 10px; /* Coloca no canto inferior */
+    right: 10px; /* Coloca no canto direito */
+    background-color: #28a745; /* Verde */
+    color: white; /* Cor do texto */
+    padding: 15px;
+    border-radius: 8px; /* Bordas arredondadas */
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    display: none; /* Inicialmente escondido */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; /* Transição suave */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+  }
+
+  #mensagemMotivacional.show {
+    display: block;
+    opacity: 1;
+  }
