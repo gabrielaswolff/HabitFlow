@@ -114,25 +114,46 @@ app.get('/habitos/:usuario_id', (req, res) => {
 app.post('/progresso/marcar', (req, res) => {
     const { usuario_id, habito_id } = req.body;
 
-    const query = `
+    const marcarQuery = `
         INSERT INTO progresso (usuario_id, habito_id, data, status)
         VALUES (?, ?, CURDATE(), 'completo')
         ON DUPLICATE KEY UPDATE status = 'completo'
     `;
 
-    db.query(query, [usuario_id, habito_id], (err, results) => {
+    db.query(marcarQuery, [usuario_id, habito_id], (err) => {
         if (err) {
             console.error('Erro ao marcar progresso:', err);
             return res.status(500).json({ success: false, message: 'Erro ao marcar progresso.' });
         }
 
-        // Atualiza pontuação do usuário
+        // Atualizar pontuação
         const pontosQuery = 'UPDATE usuarios SET pontuacao = pontuacao + 10 WHERE id = ?';
         db.query(pontosQuery, [usuario_id]);
 
-        res.json({ success: true, message: 'Hábito marcado como completo! 🎯' });
+        // Atualizar ofensiva
+        const ofensivaQuery = `
+            UPDATE usuarios
+            SET
+                ofensiva = CASE
+                    WHEN ultimo_habito = DATE_SUB(CURDATE(), INTERVAL 1 DAY) THEN ofensiva + 1
+                    WHEN ultimo_habito = CURDATE() THEN ofensiva
+                    ELSE 1
+                END,
+                ultimo_habito = CURDATE()
+            WHERE id = ?
+        `;
+
+        db.query(ofensivaQuery, [usuario_id], (err2) => {
+            if (err2) {
+                console.error('Erro ao atualizar ofensiva:', err2);
+                return res.status(500).json({ success: false, message: 'Erro ao atualizar ofensiva.' });
+            }
+
+            res.json({ success: true, message: 'Hábito marcado como completo! 🎯' });
+        });
     });
 });
+
 
 
 app.get('/ranking', (req, res) => {
@@ -198,5 +219,36 @@ app.delete('/habitos/deletar/:id', (req, res) => {
     });
 });
 
+
+app.get('/usuarios/:id/streak', (req, res) => {
+    const userId = req.params.id;
+
+    const query = `
+        SELECT habito_id, data
+        FROM progresso
+        WHERE usuario_id = ?
+        ORDER BY data DESC
+    `;
+
+    db.query(query, [userId], (err, results) => {
+        if (err) return res.status(500).json({ erro: 'Erro ao buscar ofensiva' });
+
+        let streak = 0;
+        let diaEsperado = new Date();
+        
+        for (let i = 0; i < results.length; i++) {
+            const data = new Date(results[i].data);
+            
+            if (data.toDateString() === diaEsperado.toDateString()) {
+                streak++;
+                diaEsperado.setDate(diaEsperado.getDate() - 1);
+            } else if (data < diaEsperado) {
+                break; // quebrou a sequência
+            }
+        }
+
+        res.json({ streak });
+    });
+});
 
 

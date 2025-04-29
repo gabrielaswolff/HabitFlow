@@ -35,6 +35,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
 });
 
 // Login
+
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -60,6 +61,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 });
 
 // Adicionar Hábito
+
 document.getElementById('habitForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -82,6 +84,7 @@ document.getElementById('habitForm').addEventListener('submit', async (e) => {
 });
 
 // Carregar Hábitos
+
 async function carregarHabitos() {
     const usuario_id = localStorage.getItem('userId');
     const painel = document.getElementById('painelHabitos');
@@ -112,6 +115,7 @@ async function carregarHabitos() {
 }
 
 // Marcar Hábito como Completo
+
 async function marcarCompleto(habito_id) {
     const usuario_id = localStorage.getItem('userId');
 
@@ -130,6 +134,7 @@ async function marcarCompleto(habito_id) {
 }
 
 // Editar Hábito
+
 async function editarHabito(id, titulo, descricao) {
     const novoTitulo = prompt('Novo título:', titulo);
     const novaDescricao = prompt('Nova descrição:', descricao);
@@ -151,6 +156,7 @@ async function editarHabito(id, titulo, descricao) {
 }
 
 // Deletar Hábito
+
 async function deletarHabito(id) {
     if (confirm('Tem certeza de que deseja excluir este hábito?')) {
         try {
@@ -167,6 +173,7 @@ async function deletarHabito(id) {
 }
 
 // Carregar Ranking
+
 async function carregarRanking() {
     try {
         const resposta = await fetch('http://localhost:3000/ranking');
@@ -200,7 +207,8 @@ async function carregarRanking() {
 
 carregarRanking();
 
-// Array com mensagens motivacionais
+// mensagens motivacionais
+
 const mensagens = [
     "Você consegue! Não desista agora.",
     "O sucesso é a soma de pequenos esforços repetidos.",
@@ -212,29 +220,57 @@ const mensagens = [
     "O único limite para o seu sucesso é você mesmo!"
 ];
 
-// Função para exibir uma mensagem aleatória
-// Função para exibir uma mensagem motivacional com animação
 function exibirMensagemMotivacional() {
     const mensagem = mensagens[Math.floor(Math.random() * mensagens.length)];
     const mensagemElement = document.getElementById('textoMensagem');
     const painelMensagem = document.getElementById('mensagemMotivacional');
-    
-    // Atualize o texto da mensagem
+
     mensagemElement.textContent = mensagem;
 
-    // Exibir a mensagem
-    painelMensagem.style.display = 'block'; // Mostra o painel diretamente
-    
-    // Adicionar a classe 'show' para a animação de opacidade
+    painelMensagem.style.display = 'block'; 
+
     painelMensagem.classList.add('show');
 
-    // Esconde a mensagem após 3 segundos
+    // esconder msgm
+
     setTimeout(() => {
         painelMensagem.classList.remove('show');
-        painelMensagem.style.display = 'none'; // Esconde o painel
-    }, 3000); // Tempo de exibição da mensagem (3 segundos)
+        painelMensagem.style.display = 'none'; 
+    }, 3000); 
 }
 
-// Exibir uma mensagem a cada 10 segundos
-setInterval(exibirMensagemMotivacional, 10000); // 10.000 milissegundos = 10 segundos
+setInterval(exibirMensagemMotivacional, 10000); 
+
+
+// ofensiva
+
+const userId = localStorage.getItem('userId');
+fetch(`${apiUrl}/usuarios/${userId}/streak`)
+    .then(response => response.json())
+    .then(data => {
+        const streak = data.streak;
+        const container = document.querySelector('.ofensiva-container');
+        container.textContent = `🔥 Ofensiva: ${streak} ${streak === 1 ? 'dia' : 'dias'}`;
+    })
+    .catch(error => {
+        console.error('Erro ao carregar streak:', error);
+    });
+
+
+// links
+
+document.getElementById('btnLogout').addEventListener('click', () => {
+    localStorage.clear(); 
+    window.location.href = 'index.html'; 
+});
+
+
+document.getElementById('linkLogo').addEventListener('click', () => {
+    window.location.href = 'index.html'
+});
+
+
+
+
+
 

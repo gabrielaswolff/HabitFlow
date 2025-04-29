@@ -8,9 +8,9 @@
 </head>
 <body>
     <header>
-        <img height="104" src="./images/habitosLogo.png" alt="Logo Habit Flow">
+        <img height="104" id="linkLogo" onclick="linkLogo()" src="./images/habitosLogo.png" alt="Logo Habit Flow">
 
-        <button onclick="butaoRanking()">Ranking</button>
+        <!-- <button onclick="butaoRanking()">Ranking</button> -->
     </header>
 
     <main>
@@ -48,8 +48,13 @@
         <div id="mensagemMotivacional" style="position: fixed; top: 10px; right: 10px; background-color: #622f2f; padding: 10px; border-radius: 5px; display: none; color: black;">
             <p id="textoMensagem"></p>
           </div>
-          
+        
+          <button id="btnLogout">Sair</button>
 
+
+          <div class="ofensiva-container" style="font-size: 1.2rem; margin: 10px 0; font-weight: bold;"></div>
+
+          
 
 
 

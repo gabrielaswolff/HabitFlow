@@ -1,27 +1,40 @@
-/* Geral */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+body{
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(-45deg, #a8e6cf, #48784d, #81c784, #7da550);
+  background-size: 400% 400%;
+  animation: verdeAnimado 15s ease infinite;
+  font-family: sans-serif;
 }
 
-header {
-    background-color: rgb(6, 28, 6);
+@keyframes verdeAnimado {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+header{
+    background-color: rgb(5, 45, 12);
     display: flex;
     align-items: left;
     justify-content: left;
 }
 
-main {
+main{
     background-image: url();
     min-height: 90vh;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-size: cover; /* Faz com que a imagem cubra todo o fundo */
-    background-position: center; /* Centraliza a imagem */
-    background-attachment: fixed; /* Fixa a imagem enquanto rola a página */
+   
 }
 
 form {
@@ -56,7 +69,6 @@ form button:hover {
     background-color: #45a049;
 }
 
-/* Notificações */
 #notificacaoContainer {
     position: fixed;
     bottom: 20px;
@@ -83,7 +95,6 @@ form button:hover {
     }
 }
 
-/* Ranking */
 #ranking {
     width: 90%;
     margin-top: 20px;
@@ -142,3 +153,20 @@ form button:hover {
     display: block;
     opacity: 1;
   }
+
+
+  .painel-usuario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.ofensiva {
+    color: #ff5722;
+}
