@@ -2,7 +2,7 @@
 
 Desenvolvido por: Arthur Xavier, Laura, Gabriela e Filipe Lima
 
-O Habitflow, ou fluxo de hábito é uma ferramenta auxiliar de cunho prático a aqueles que desejam manter controle de rotina ou de hábitos saúdaveis, Buscando facilitar e gerenciar o dia-a-dia dos de forma acessível. Integra funcionalidades diversas, como: 
+O Habitflow, ou fluxo de hábito é uma ferramenta auxiliar de cunho prático a aqueles que desejam manter controle de rotina ou de hábitos saúdaveis, buscando facilitar e gerenciar o dia-a-dia dos de forma acessível. Integra funcionalidades diversas, como: 
 
 cadastro;
 login;
