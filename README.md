@@ -2,13 +2,13 @@
 
 Desenvolvido por: Arthur Xavier, Laura, Gabriela e Filipe Lima
 
-O Habitflow, ou fluxo de hábito é uma ferramenta auxiliar de cunho prático a aqueles que desejam manter controle de rotina ou de hábitos saúdaveis, Buscando facilitar e gerenciar o dia-a-dia dos usuários de forma acessível. Integra funcionalidades diversas, como: 
+O Habitflow, ou fluxo de hábito é uma ferramenta auxiliar de cunho prático a aqueles que desejam manter controle de rotina ou de hábitos saúdaveis, Buscando facilitar e gerenciar o dia-a-dia dos de forma acessível. Integra funcionalidades diversas, como: 
 
 cadastro;
 login;
 logout;
 criação, edição e exclusão de metas de hábitos;
-Contagem de dias consecutivos de conclusão de hábitos (Streaks);
+contagem de dias consecutivos de conclusão de hábitos (Streaks);
 notificações e lembretes;
 visualização de ranking com contagem de pontos.
 
@@ -57,7 +57,7 @@ MÉTODO GET - /usuarios/:id/streak
 
 # Rota de ranking
 
- MÉTODO GET - /ranking
+MÉTODO GET - /ranking
 
 
 
