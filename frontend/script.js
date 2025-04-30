@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:3000';
+const apiUrl = 'http://localhost:3004';
 
 // notificações
 
@@ -299,7 +299,7 @@ document.getElementById('btnLogout').addEventListener('click', () => {
 
 
 document.getElementById('linkLogo').addEventListener('click', () => {
-    window.location.href = 'index.html'
+    window.location.href = './index.html'
 });
 
 
