@@ -1,6 +1,7 @@
 const apiUrl = 'http://localhost:3000';
 
-// Função para exibir notificações
+// notificações
+
 function mostrarNotificacao(mensagem) {
     const notificacao = document.createElement('div');
     notificacao.classList.add('notificacao');
@@ -250,12 +251,44 @@ fetch(`${apiUrl}/usuarios/${userId}/streak`)
     .then(data => {
         const streak = data.streak;
         const container = document.querySelector('.ofensiva-container');
-        container.textContent = `🔥 Ofensiva: ${streak} ${streak === 1 ? 'dia' : 'dias'}`;
+
+        container.innerHTML = `
+        <div style="
+          position: fixed;
+          top: 10px;
+          right: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          z-index: 9999;
+        ">
+          <div style="position: relative; width: 60px; height: 60px;">
+            <img src="./images/foguinho.png" alt="fogo verde" style="width: 100%; height: 100%;">
+            <span style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              margin-top: 1vh;
+              transform: translate(-50%, -50%);
+              color: white;
+              font-weight: bold;
+              font-size: 20px;
+              text-shadow: 0 0 4px black;
+            ">
+              ${streak}
+            </span>
+          </div>
+          <span style="margin-top: 4px; font-size: 20px; font-weight: 500; color: #fff;">
+            ${streak === 1 ? 'day' : 'days'}
+          </span>
+        </div>
+      `;
+      
+      
     })
     .catch(error => {
         console.error('Erro ao carregar streak:', error);
     });
-
 
 // links
 

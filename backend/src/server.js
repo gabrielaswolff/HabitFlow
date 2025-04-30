@@ -15,6 +15,7 @@ app.listen(porta, () => console.log(`Servidor rodando na porta ${porta}`));
 
 
 // Cadastro de usuário
+
 app.post('/register', (req, res) => {
     const { nome, email, senha } = req.body;
 
@@ -29,6 +30,7 @@ app.post('/register', (req, res) => {
 });
 
 // Editar Usuário
+
 app.put('/usuarios/editar/:id', (req, res) => {
     const { id } = req.params;
     const { nome, email, senha } = req.body;
@@ -44,6 +46,7 @@ app.put('/usuarios/editar/:id', (req, res) => {
 });
 
 // Deletar Usuário
+
 app.delete('/usuarios/deletar/:id', (req, res) => {
     const { id } = req.params;
 
@@ -59,6 +62,7 @@ app.delete('/usuarios/deletar/:id', (req, res) => {
 
 
 // Login de usuário
+
 app.post('/login', (req, res) => {
     const { email, senha } = req.body;
 

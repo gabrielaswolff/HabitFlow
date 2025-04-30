@@ -154,7 +154,6 @@ form button:hover {
     opacity: 1;
   }
 
-
   .painel-usuario {
     display: flex;
     justify-content: space-between;
@@ -169,4 +168,8 @@ form button:hover {
 
 .ofensiva {
     color: #ff5722;
+}
+
+#linkLogo{
+    cursor: pointer;
 }
