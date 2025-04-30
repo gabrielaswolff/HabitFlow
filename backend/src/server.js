@@ -29,6 +29,42 @@ app.post('/register', (req, res) => {
     });
 });
 
+// Listar todos os usuários
+app.get('/usuarios', (req, res) => {
+    const query = 'SELECT id, nome, email, pontuacao, ofensiva FROM usuarios';
+
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar usuários:', err);
+            return res.status(500).json({ success: false, message: 'Erro ao buscar usuários.' });
+        }
+
+        res.json({ success: true, usuarios: results });
+    });
+});
+
+
+// Obter usuário por ID
+app.get('/usuarios/:id', (req, res) => {
+    const { id } = req.params;
+
+    const query = 'SELECT id, nome, email, pontuacao, ofensiva FROM usuarios WHERE id = ?';
+
+    db.query(query, [id], (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar usuário:', err);
+            return res.status(500).json({ success: false, message: 'Erro ao buscar usuário.' });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ success: false, message: 'Usuário não encontrado.' });
+        }
+
+        res.json({ success: true, usuario: results[0] });
+    });
+});
+
+
 // Editar Usuário
 
 app.put('/usuarios/editar/:id', (req, res) => {

@@ -31,5 +31,4 @@ CREATE TABLE IF NOT EXISTS progresso(
     FOREIGN KEY (habito_id) REFERENCES habitos(id) ON DELETE CASCADE
 );
 
-select * from usuarios;
 
