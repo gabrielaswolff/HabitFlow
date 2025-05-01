@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habit Flow - Cadastro</title>
+  <link rel="stylesheet" href="/frontend/css/style.css">
+</head>
+<body>
+  <header>
+    <img height="104" src="/frontend/images/habitosLogo.png" alt="Logo Habit Flow" onclick="window.location.href='index.html'">
+  </header>
+  <main>
+    <h2>Cadastro</h2>
+    <form id="registerForm">
+      <input type="text" id="nome" placeholder="Nome" required>
+      <input type="email" id="emailCadastro" placeholder="Email" required>
+      <input type="password" id="senhaCadastro" placeholder="Senha" required>
+      <button type="submit">Cadastrar</button>
+    </form>
+    <p>Já tem conta? <a href="./html/index.html">Faça login</a></p>
+  </main>
+  <div id="notificacaoContainer"></div>
+  <script src="/frontend/script.js"></script>
+</body>
+</html>
