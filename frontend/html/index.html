@@ -8,43 +8,28 @@
 </head>
 <body>
     <header>
-        <img height="104" id="linkLogo" onclick="linkLogo()" src="/frontend/images/habitosLogo.png" alt="Logo Habit Flow">
-        <!-- <button onclick="butaoRanking()">Ranking</button> -->
+        <a href=""></a>
+        <img height="104" id="linkLogo"src="/frontend/images/habitosLogo.png" alt="Logo Habit Flow">
     </header>
     
         <main class="container-metade">
             <section class="metade-esquerda">
               <h2>Bem-vindo ao HabitFlow</h2>
               <p>Crie metas, e organize sua rotina</p>
-            </section>
-          
-        <div class="ofensiva-container"></div>
-        
+            </section>    
         <section class="metade-direita">
+
         <form id="registerForm"></form>
-      
-        <h2>Login</h2>
+    
            
         <form id="loginForm">
+            <h2>Login</h2>
             <input type="email" id="emailLogin" placeholder="Email" required>
             <input type="password" id="senhaLogin" placeholder="Senha" required>
-            <button type="submit">Entrar</button>
+            <button class="bntEntrar" type="submit">Entrar</button>  
         </form>
- 
-    
+        <button onclick="window.location.href='cadastro.html'" class="linkCadastro" >Ainda não tem conta?</button>
         <div id="notificacaoContainer"></div>
-
-        <div id="mensagemMotivacional" style="position: fixed; top: 10px; right: 10px; background-color: #622f2f; padding: 10px; border-radius: 5px; display: none; color: black;">
-            <p id="textoMensagem"></p>
-        </div>
-        
-          <button id="btnLogout">Sair</button>
-
-        
-          
-   
-
-
     </main>
 
     <script src="/frontend/scripts/script.js"></script>

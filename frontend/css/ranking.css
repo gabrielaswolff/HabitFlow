@@ -1,0 +1,106 @@
+body{
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(-45deg, #a8e6cf, #48784d, #81c784, #7da550);
+  background-size: 400% 400%;
+  animation: verdeAnimado 15s ease infinite;
+  font-family: sans-serif;
+}
+
+@keyframes verdeAnimado {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+header {
+  background-color: rgb(5, 45, 12);
+  display: flex;  
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+h2 {
+  font-size: 4vh;
+  color: white;
+  text-shadow: 1px 1px 5px #0f3b1e;
+  margin-bottom: 20px;
+}
+
+#ranking {
+  width: 50%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#ranking div {
+  background-color: #48784d;
+  padding: 12px 20px;
+  margin: 10px 0;
+  border-radius: 8px;
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+#ranking div:hover {
+  transform: scale(1.02);
+}
+
+#ranking div:first-child {
+  background-color: gold;
+  font-weight: bold;
+}
+
+#ranking div:nth-child(2) {
+  background-color: silver;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+#ranking div:nth-child(3) {
+  background-color: #cd7f32;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 5vh; /* aumenta o espaçamento entre os botões */
+  margin-left: 150vh;
+  margin-right: 40px; /* ajusta a distância em relação ao canto direito */
+  align-items: center;
+}
+
+/* Aplica a todos os botões diretos dentro do header e aos da nav.header-buttons */
+header > button,
+.header-buttons button {
+  background: none;    /* remove qualquer background */
+  color: white;        /* texto em branco */
+  border: none;        /* remove bordas */
+  font-size: 2.5vh;     /* ajuste de tamanho, se quiser */
+  cursor: pointer;     /* pointer ao passar o mouse */
+  padding: 0.5em 1em;  /* espaço interno para ficar agradável */
+}
+
+/* Pequeno efeito ao passar o mouse */
+header > button:hover,
+.header-buttons button:hover {
+  opacity: 0.8;
+}
+
+

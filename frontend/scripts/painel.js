@@ -57,7 +57,7 @@ async function carregarHabitos() {
                     <p>Status: ${habito.status === 'completo' ? '✅ Completo' : '🔴 Pendente'}</p>
                     ${habito.status !== 'completo' ? `<button onclick="marcarCompleto(${habito.id})">Marcar como completo</button>` : ''}
                     <button onclick="editarHabito(${habito.id}, '${habito.titulo}', '${habito.descricao || ''}')">Editar</button>
-                    <button onclick="deletarHabito(${habito.id})">Excluir</button>
+                    <button class="btn-excluir" onclick="deletarHabito(${habito.id})">Excluir</button>
                     <hr>
                 `;
                 painel.appendChild(div);
@@ -206,3 +206,29 @@ function exibirMensagemMotivacional() {
 }
 
 setInterval(exibirMensagemMotivacional, 10000); 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const usuario_id = localStorage.getItem('userId');
+    if (usuario_id) {
+        carregarHabitos();
+    }
+});
+
+
+
+document.getElementById('btnLogout').addEventListener('click', () => {
+    localStorage.clear(); 
+    window.location.href = '/frontend/html/index.html'; 
+});
+
+
+document.getElementById('linkLogo').addEventListener('click', () => {
+    window.location.href = '/frontend/html/index.html'
+});
+
+
+
+
+
+
+

@@ -14,7 +14,7 @@ async function carregarRanking() {
                 item.innerHTML = `<strong>${index + 1}º</strong> - ${usuario.nome} (${usuario.pontuacao} pontos)`;
 
                 if (index === 0) {
-                    item.style.color = 'gold';
+                    item.style.color = 'black';
                     item.style.fontWeight = 'bold';
                     item.innerHTML = `🥇 ${usuario.nome} (${usuario.pontuacao} pontos)`;
                 } else if (index === 1) {
@@ -114,3 +114,21 @@ fetch(`${apiUrl}/usuarios/${userId}/streak`)
     });
 
 
+
+    document.getElementById('btnLogout').addEventListener('click', () => {
+        localStorage.clear(); 
+        window.location.href = '/frontend/html/index.html'; 
+    });
+    
+    
+    document.getElementById('linkLogo').addEventListener('click', () => {
+        window.location.href = '/frontend/html/index.html'
+    });
+    
+
+    
+    
+    
+    
+    
+    

@@ -1,50 +1,4 @@
-<!-- index.html (Página de Login) -->
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Habit Flow - Login</title>
-  <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-  <header>
-    <img height="104" src="./images/habitosLogo.png" alt="Logo Habit Flow" onclick="window.location.href='index.html'">
-  </header>
-  <main class="container-metade">
-    <section class="metade-esquerda">
-      <h2>Bem-vindo ao HabitFlow</h2>
-      <p>Crie metas e organize sua rotina</p>
-    </section>
-    <section class="metade-direita">
-      <h2>Login</h2>
-      <form id="loginForm">
-        <input type="email" id="emailLogin" placeholder="Email" required>
-        <input type="password" id="senhaLogin" placeholder="Senha" required>
-        <button type="submit">Entrar</button>
-      </form>
-      <p>Não tem conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
-    </section>
-  </main>
-  <div id="notificacaoContainer"></div>
-  <script src="./script.js"></script>
-</body>
-</html>
-
-<!-- cadastro.html -->
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Habit Flow - Cadastro</title>
-  <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-  <header>
-    <img height="104" src="./images/habitosLogo.png" alt="Logo Habit Flow" onclick="window.location.href='index.html'">
-  </header>
-  <main>
+<main>
     <h2>Cadastro</h2>
     <form id="registerForm">
       <input type="text" id="nome" placeholder="Nome" required>
@@ -52,12 +6,5 @@
       <input type="password" id="senhaCadastro" placeholder="Senha" required>
       <button type="submit">Cadastrar</button>
     </form>
-    <p>Já tem conta? <a href="index.html">Faça login</a></p>
+    <p>Já tem conta? <a href="./html/index.html">Faça login</a></p>
   </main>
-  <div id="notificacaoContainer"></div>
-  <script src="./script.js"></script>
-</body>
-</html>
-
-<!-- painel.html (Página principal com hábitos e ofensiva) -->
-
