@@ -1,4 +1,4 @@
-body{
+body {
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -20,9 +20,15 @@ body{
   }
 }
 
+
+
 header {
   background-color: rgb(5, 45, 12);
-  display: flex;  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
 main {
@@ -80,27 +86,63 @@ h2 {
 
 .header-buttons {
   display: flex;
-  gap: 5vh; /* aumenta o espaçamento entre os botões */
-  margin-left: 150vh;
-  margin-right: 40px; /* ajusta a distância em relação ao canto direito */
+  gap: 5vh;
+  margin-left: auto;
+  margin-right: 100px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-/* Aplica a todos os botões diretos dentro do header e aos da nav.header-buttons */
+/* Botões */
 header > button,
 .header-buttons button {
-  background: none;    /* remove qualquer background */
-  color: white;        /* texto em branco */
-  border: none;        /* remove bordas */
-  font-size: 2.5vh;     /* ajuste de tamanho, se quiser */
-  cursor: pointer;     /* pointer ao passar o mouse */
-  padding: 0.5em 1em;  /* espaço interno para ficar agradável */
+  background: none;
+  color: white;
+  border: none;
+  font-size: 2.5vh;
+  cursor: pointer;
+  padding: 0.5em 1em;
 }
 
-/* Pequeno efeito ao passar o mouse */
 header > button:hover,
 .header-buttons button:hover {
   opacity: 0.8;
 }
 
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  #ranking {
+    width: 90%;
+  }
 
+  h2 {
+    font-size: 3.5vh;
+    text-align: center;
+  }
+
+  .header-buttons {
+    justify-content: center;
+    margin: 10px auto;
+    gap: 2vh;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  #ranking div {
+    font-size: 16px;
+    padding: 10px 16px;
+  }
+
+  .header-buttons button {
+    font-size: 2.2vh;
+  }
+
+  h2 {
+    font-size: 3vh;
+  }
+}

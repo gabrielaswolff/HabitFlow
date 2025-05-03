@@ -271,5 +271,68 @@ main {
   .header-buttons button:hover {
     opacity: 0.8;
   }
+
+  @media (max-width: 768px) {
+    main {
+      padding: 10px;
+    }
+  
+    form {
+      margin-top: 5vh;
+      padding: 15px;
+    }
+  
+    form input,
+    form textarea {
+      width: 100%;
+      font-size: 14px;
+    }
+  
+    .titulo-principal {
+      font-size: 28px;
+    }
+  
+    .subtitulo {
+      font-size: 20px;
+    }
+  
+    .grid-habitos {
+      grid-template-columns: 1fr;
+    }
+  
+    #painelHabitos > div {
+      max-width: 100%;
+      padding: 10px;
+    }
+  
+    .header-buttons {
+      flex-direction: column;
+      gap: 15px;
+      margin-left: 0;
+      margin-right: 0;
+      align-items: flex-end;
+      padding: 10px;
+    }
+  
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
+    }
+  
+    header > button,
+    .header-buttons button {
+      font-size: 16px;
+      padding: 0.5em;
+    }
+  
+    #notificacaoContainer {
+      width: 90%;
+      left: 5%;
+      transform: none;
+    }
+  }
+  
+  
   
   

@@ -57,7 +57,7 @@ body{
   .metade-direita {
     background-color: #052d0c;
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1);
-
+  
     
   }
   
@@ -193,4 +193,83 @@ form{
 
 .linkCadastro:hover {
   text-decoration: none;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 1024px) {
+  .metade-esquerda,
+  .metade-direita {
+    width: 100%;
+    height: auto;
+  }
+
+  main.container-metade {
+    flex-direction: column;
+    height: auto;
+    padding: 5vh 0;
+  }
+
+  form input,
+  form textarea,
+  .bntEntrar {
+    width: 80vw;
+    max-width: 350px;
+  }
+
+  .linkCadastro {
+    font-size: 2.5vh;
+  }
+
+  form h2 {
+    font-size: 4vh;
+  }
+
+  a {
+    font-size: 2.5vh;
+  }
+
+  .header-buttons {
+    margin-left: auto;
+    margin-right: 2vw;
+    gap: 2vw;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 600px) {
+  h2 {
+    font-size: 3.5vh;
+  }
+
+  #ranking {
+    width: 90%;
+  }
+
+  .header-buttons {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1vh;
+    margin-left: auto;
+    margin-right: 20px;
+  }
+
+  header {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .painel-usuario {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  form {
+    margin-top: 5vh;
+    padding: 15px;
+  }
+
+  #painelHabitos > div {
+    width: 90%;
+  }
 }

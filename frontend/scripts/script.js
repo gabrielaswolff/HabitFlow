@@ -90,36 +90,6 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
 
 
-
-// Mensagens Motivacionais
-const mensagens = [
-    "Você consegue! Não desista agora.",
-    "O sucesso é a soma de pequenos esforços repetidos.",
-    "Cada dia é uma nova chance para mudar sua vida.",
-    "Acredite em si mesmo e tudo será possível.",
-    "Você é mais forte do que pensa!",
-    "Mantenha o foco e siga em frente!",
-    "Nada é impossível. Acredite em você!",
-    "O único limite para o seu sucesso é você mesmo!"
-];
-
-function exibirMensagemMotivacional() {
-    const mensagem = mensagens[Math.floor(Math.random() * mensagens.length)];
-    const mensagemElement = document.getElementById('textoMensagem');
-    const painelMensagem = document.getElementById('mensagemMotivacional');
-
-    mensagemElement.textContent = mensagem;
-    painelMensagem.classList.add('show');
-    painelMensagem.style.display = 'block';
-
-    setTimeout(() => {
-        painelMensagem.classList.remove('show');
-        painelMensagem.style.display = 'none';
-    }, 3000);
-}
-
-setInterval(exibirMensagemMotivacional, 10000);
-
 // Exibir Ofensiva (Streak)
 const userId = localStorage.getItem('userId');
 if (userId) {

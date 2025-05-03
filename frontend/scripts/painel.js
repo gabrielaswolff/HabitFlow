@@ -222,12 +222,6 @@ document.getElementById('btnLogout').addEventListener('click', () => {
 });
 
 
-document.getElementById('linkLogo').addEventListener('click', () => {
-    window.location.href = '/frontend/html/index.html'
-});
-
-
-
 
 
 

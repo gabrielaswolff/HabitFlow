@@ -121,13 +121,6 @@ fetch(`${apiUrl}/usuarios/${userId}/streak`)
     });
     
     
-    document.getElementById('linkLogo').addEventListener('click', () => {
-        window.location.href = '/frontend/html/index.html'
-    });
-    
-
-    
-    
     
     
     
